@@ -29,13 +29,15 @@ Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::resource('user', 'UserController')->except(['store']);
         Route::post('logout', 'UserController@logout');
         Route::resource('menu', 'MenuController')->except(['store']);
+        Route::post('pesan', 'UserController@pesan');
 
 
         Route::group(['middleware' => ['admin.loggedin']], function () {
             Route::resource('admin', 'AdminController')->only(['index']);
-            Route::resource('store', 'MenuController')->only(['store']);
-            Route::post('update/{menu}', 'MenuController@update')->name('update');
-
+            Route::resource('admin/store/menu', 'MenuController')->only(['store']);
+            Route::post('admin/update/menu/{menu}', 'MenuController@update')->name('update');
+            Route::resource('admin/store/meja', 'MejaController')->only(['store']);
+            Route::post('admin/update/meja', 'MejaController@updateMeja');
         });
     });
 });

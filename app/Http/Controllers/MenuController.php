@@ -20,12 +20,19 @@ class MenuController extends Controller
         // $filename = $id . '.' . $fileExt;
         // $path = $request->foto->storeAs('image/menu', $filename, 'public_uploads');
 
+        $path = "images/";
         $data = new Menu();
         $data->nama = $request->nama;
         $data->kategori = $request->kategori;
         $data->harga = $request->harga;
         $data->deskripsi = $request->deskripsi;
-        $data->foto = $request->foto;
+        if(strtolower($request->nama) == "bakso"){
+            $path = $path."bakso.jpg";
+        }
+        else if(strtolower($request->nama) == "mie ayam"){
+            $path = $path."mie_ayam.jpg";
+        }
+        $data->foto = $path;
         $data->save();
         return response()->json($data);
     }
