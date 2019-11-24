@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 // });
 
 // Route::resource('users', 'UserController')->only(['store']);
-Route::group(['prefix' => 'pesenin', 'middleware' => 'cors'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::post('login', 'UserController@login');
 
     Route::post('register', 'UserController@store');
