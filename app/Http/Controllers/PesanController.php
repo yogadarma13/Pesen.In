@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pesan;
 use Illuminate\Http\Request;
 
 class PesanController extends Controller
@@ -13,7 +14,7 @@ class PesanController extends Controller
      */
     public function index()
     {
-        return response()->json(Pesan::all);
+        return response()->json(Pesan::all());
     }
 
     /**
