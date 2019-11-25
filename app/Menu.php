@@ -8,7 +8,7 @@ class Menu extends Model
 {
     protected $table = 'menu';
 
-    protected $fillable = [
-        'nama', 'harga', 'deskripsi',
-    ];
+    // protected $fillable = [
+    //     'nama', 'harga', 'deskripsi',
+    // ];
 }

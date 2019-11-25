@@ -97,7 +97,7 @@ class UserController extends Controller
                 $meja->status = 1;
 
                 $pesan->total_harga =  $request->total_harga;
-                $pesan->id_menu = "123";
+                $pesan->id_menu = $request->id_menu;
 
                 $meja->save();
                 $pesan->save();

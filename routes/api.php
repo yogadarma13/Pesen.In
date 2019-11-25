@@ -26,9 +26,10 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::group(['middleware' => ['user.loggedin']], function () {
             Route::resource('user', 'UserController')->except(['store']);
-            Route::post('logout', 'UserController@logout');
+            // Route::post('logout', 'UserController@logout');
             Route::resource('menu', 'MenuController')->only(['index', 'show']);
             Route::post('pesan', 'UserController@pesan');
+            Route::resource('promo', 'PromoController')->only(['index', 'show']);
 
 
             Route::group(['middleware' => ['admin.loggedin']], function () {
@@ -38,6 +39,10 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
                 Route::post('admin/update/menu/{menu}', 'MenuController@update')->name('update');
                 Route::resource('admin/store/meja', 'MejaController')->only(['store']);
                 Route::post('admin/update/meja', 'MejaController@updateMeja');
+                Route::resource('admin/store/promo', 'PromoController')->only(['store']);
+                Route::post('admin/store/pembayaran/{idPesan}', 'PembayaranController@simpan')->name('simpan');
+                Route::resource('admin/pembayaran', 'PembayaranController')->only(['index']);
+                Route::resource('admin/pesan', 'PesanController')->only(['index']);
             });
         });
     });
