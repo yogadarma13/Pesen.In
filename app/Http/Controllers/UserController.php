@@ -32,7 +32,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $data = Menu::find($id);
+        $data = User::find($id);
         if ($data) {
             return response()->json($data);
         } else {
@@ -74,6 +74,8 @@ class UserController extends Controller
             if(Hash::check($request->password, $user->password)){
                 $token = $this->jwtGenerator($request->email);
                 return response()->json([
+                    "id"=>$user->id,
+                    "email"=>$user->email,
                     "token" => $token
                 ]);
             }

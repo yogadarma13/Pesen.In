@@ -27,13 +27,14 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
         Route::group(['middleware' => ['user.loggedin']], function () {
             Route::resource('user', 'UserController')->except(['store']);
             Route::post('logout', 'UserController@logout');
-            Route::resource('menu', 'MenuController')->except(['store']);
+            Route::resource('menu', 'MenuController')->only(['index', 'show']);
             Route::post('pesan', 'UserController@pesan');
 
 
             Route::group(['middleware' => ['admin.loggedin']], function () {
                 Route::resource('admin', 'AdminController')->only(['index']);
                 Route::resource('admin/store/menu', 'MenuController')->only(['store']);
+                Route::delete('admin/delete/menu/{menu}', 'MenuController@destroy')->name('destroy');
                 Route::post('admin/update/menu/{menu}', 'MenuController@update')->name('update');
                 Route::resource('admin/store/meja', 'MejaController')->only(['store']);
                 Route::post('admin/update/meja', 'MejaController@updateMeja');

@@ -41,7 +41,7 @@ class MenuController extends Controller
     {
         $data = Menu::find($id);
         if ($data) {
-            return response()->json(['message'=>'Data ditemukan'], $data);
+            return response()->json($data);
         } else {
             // return response()->json(['message'=>'Menu tidak ditemukan']);
             return abort(404, 'Data menu tidak ditemukan');
