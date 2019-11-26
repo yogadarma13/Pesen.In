@@ -15,8 +15,8 @@ class CreatePromoTable extends Migration
     {
         Schema::create('promo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama', 10);
-            $table->string('deskripsi', 100);
+            $table->string('nama', 100);
+            $table->string('deskripsi', 255);
             $table->integer('potongan_harga');
             $table->integer('jumlah_promo');
             $table->timestamps();
