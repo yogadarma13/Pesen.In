@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Pembayaran;
+use App\Pesan;
+use App\User;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -35,7 +37,20 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
+        $pesan = Pesan::find($request->id);
+        if($pesan){
+            $pembayaran = new Pembayaran();
+            $pembayaran->nomor_order = $pesan->nomor;
 
+            $pemesan = User::where('id', $pesan->id_user)->first();
+            $pembayaran->nama = $pemesan->nama;
+            $pembayaran->total = $pesan->total_harga;
+            $pembayaran->save();
+
+            return response()->json(["message_success"=>"Pesanan telah dibayar"]);
+
+        }
+        return response()->json(["message"=>"Gagal"]);
     }
 
     /**
@@ -84,19 +99,6 @@ class PembayaranController extends Controller
     }
 
     public function simpan($id){
-        $pesan = Pesan::where('id', $id)->first();
-        if($pesan){
-            $pembayaran = new Pembayaran();
-            $pembayaran->nomor_order = $pesan->nomor;
 
-            $pemesan = User::where('id', $pesan->id_user)->first();
-            $pembayaran->nama = $pemesan->nama;
-            $pembayaran->total = $pesan->total_harga;
-            $pembayaran->save();
-
-            return response()->json(["message_success"=>"Pesanan telah dibayar"]);
-
-        }
-        return response()->json(["message"=>"Gagal"]);
     }
 }

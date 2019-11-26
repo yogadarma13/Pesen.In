@@ -42,7 +42,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
                 Route::resource('admin/show/meja', 'MejaController')->only(['show']);
                 Route::resource('admin/store/promo', 'PromoController')->only(['store']);
                 Route::delete('admin/delete/promo/{promo}', 'PromoController@destroy')->name('destroy');
-                Route::post('admin/store/pembayaran/{idPesan}', 'PembayaranController@simpan')->name('simpan');
+                Route::post('admin/store/pembayaran', 'PembayaranController@store')->name('store');
                 Route::resource('admin/pembayaran', 'PembayaranController')->only(['index']);
                 Route::resource('admin/pesan', 'PesanController')->only(['index']);
                 Route::resource('admin/meja', 'MejaController')->only(['index']);
