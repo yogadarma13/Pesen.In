@@ -16,7 +16,7 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        return response()->json(User::all);
+        return response()->json(Pembayaran::all());
     }
 
     /**
