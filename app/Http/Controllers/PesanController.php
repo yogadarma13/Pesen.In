@@ -46,7 +46,11 @@ class PesanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pesan = Pesan::find($id);
+        if($pesan){
+            return response()->json($pesan);
+        }
+        return response()->json(["message"=>"Data tidak ditemukan"]);
     }
 
     /**
