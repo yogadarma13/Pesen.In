@@ -81,7 +81,7 @@ class MejaController extends Controller
         if($meja){
             $meja->status = 0;
             $meja->save();
-            return response()->json(["message-succes"=>"Data meja telah diperbaharui"]);
+            return response()->json(["message"=>"Data meja telah diperbaharui"]);
         }
         return response()->json(["message"=>"Data nomor tidak ditemukan"]);
     }
