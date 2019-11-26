@@ -40,6 +40,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
                 Route::resource('admin/store/meja', 'MejaController')->only(['store']);
                 Route::post('admin/update/meja', 'MejaController@updateMeja');
                 Route::resource('admin/store/promo', 'PromoController')->only(['store']);
+                Route::delete('admin/delete/promo/{promo}', 'PromoController@destroy')->name('destroy');
                 Route::post('admin/store/pembayaran/{idPesan}', 'PembayaranController@simpan')->name('simpan');
                 Route::resource('admin/pembayaran', 'PembayaranController')->only(['index']);
                 Route::resource('admin/pesan', 'PesanController')->only(['index']);

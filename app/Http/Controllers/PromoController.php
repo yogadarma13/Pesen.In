@@ -91,8 +91,10 @@ class PromoController extends Controller
     public function destroy($id)
     {
         $promo = Promo::find($id);
-        if($promo->jumlah_promo == 0){
+        // if($promo->jumlah_promo == 0){
             $promo->delete();
-        }
+            return response()->json(["message"=>"Promo telah dihapus"]);
+        // }
+        // return res
     }
 }
