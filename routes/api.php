@@ -46,7 +46,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
                 Route::resource('admin/pembayaran', 'PembayaranController')->only(['index']);
                 Route::resource('admin/pesan', 'PesanController')->only(['index']);
                 Route::resource('admin/meja', 'MejaController')->only(['index']);
-                Route::post('admin/show/pesan/{pesan}', 'PesanController@show')->name('show');
+                Route::get('admin/show/pesan/{pesan}', 'PesanController@show')->name('show');
             });
         });
     });
