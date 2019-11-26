@@ -49,7 +49,11 @@ class MejaController extends Controller
      */
     public function show($id)
     {
-        //
+        $meja = Meja::find($id);
+        if($meja){
+            return response()->json($meja);
+        }
+        return response()->json(404, "Data tidak ditemukan");
     }
 
     /**
@@ -72,7 +76,14 @@ class MejaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $meja = Meja::find($id);
+
+        if($meja){
+            $meja->status = 0;
+            $meja->save();
+            return response()->json(["message-succes"=>"Data meja telah diperbaharui"]);
+        }
+        return response()->json(["message"=>"Data nomor tidak ditemukan"]);
     }
 
     /**
