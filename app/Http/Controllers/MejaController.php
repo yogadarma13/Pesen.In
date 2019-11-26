@@ -38,7 +38,7 @@ class MejaController extends Controller
         $meja = new Meja();
         $meja->status = 0;
         $meja->save();
-        return response()->json(["Message"=>"Meja telah ditambahkan"]);
+        return response()->json(["message"=>"Meja telah ditambahkan"]);
     }
 
     /**
