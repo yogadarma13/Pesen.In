@@ -14,7 +14,7 @@ class MejaController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Meja::all());
     }
 
     /**
