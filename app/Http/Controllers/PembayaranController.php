@@ -47,6 +47,8 @@ class PembayaranController extends Controller
             $pembayaran->total = $pesan->total_harga;
             $pembayaran->save();
 
+            $pesan->delete();
+
             return response()->json(["message_success"=>"Pesanan telah dibayar"]);
 
         }
