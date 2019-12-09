@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,7 +24,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'cors'], function () {
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::group(['middleware' => ['user.loggedin']], function () {
             Route::resource('user', 'UserController')->except(['store']);
-            // Route::post('logout', 'UserController@logout');
             Route::resource('menu', 'MenuController')->only(['index', 'show']);
             Route::post('pesan', 'UserController@pesan');
             Route::resource('promo', 'PromoController')->only(['index', 'show']);
